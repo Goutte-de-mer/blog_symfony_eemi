@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @extends ServiceEntityRepository<Article>
@@ -16,12 +18,18 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function findAllDesc()
+    public function findAllDesc(int $page, int $limit): Paginator
     {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC') // Trier par date décroissante
-            ->getQuery()
-            ->getResult();
+
+        return new Paginator(
+            $this
+                ->createQueryBuilder('a')
+                ->setFirstResult(($page - 1) * $limit)
+                ->setMaxResults($limit)
+                ->orderBy('a.createdAt', 'DESC') // Trier par date décroissante
+                ->getQuery()
+                ->setHint(Paginator::HINT_ENABLE_DISTINCT, false)
+        );
     }
 
     public function findLatest(int $limit = 3): array
@@ -32,6 +40,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
 
     //    /**
     //     * @return Article[] Returns an array of Article objects

@@ -17,12 +17,13 @@
 		{% endblock %}
 	</head>
 	<body>
-		<header class="p-5 flex gap-x-5 w-full justify-between items-center">
+		<header class="p-5 flex gap-x-5 w-full justify-between items-center bg-[#f8f8f8] drop-shadow-md">
 			<a href="{{path('app_main_homepage')}}" class="font-bold text-xl text-black tracking-widest border-black border-2 p-4">LOGO</a>
 
 			{% if app.user %}
 
-				<p>{{ app.user.username }}</p>
+				<p>Utilisateur :
+					{{ app.user.username }}</p>
 				<form action="{{ path('app_logout') }}" method="post">
 					<button class="btn btn-primary" type="submit">Déconnexion</button>
 				</form>

@@ -7,6 +7,16 @@
 	<main class="flex flex-col items-center">
 
 		<h1 class="font-bold text-3xl mb-7 text-dark_purple uppercase">Tous les articles</h1>
+		<div class="my-4">
+			{% if page > 1 %}
+				<a href="{{path('app_articles', {page: page - 1})}}" class="btn btn-secondary">Page précédente</a>
+
+			{% endif %}
+			{% if page < maxPage %}
+				<a href="{{path('app_articles', {page: page + 1})}}" class="btn btn-secondary">Page suivante</a>
+			{% endif %}
+
+		</div>
 		<div class="grid grid-cols-3 gap-7 mx-auto">
 			{% for article in articles %}
 
@@ -27,8 +37,6 @@
 			{% endfor %}
 
 		</div>
-
-
 	</main>
 
 {% endblock %}

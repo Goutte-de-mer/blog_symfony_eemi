@@ -10,7 +10,7 @@
     @apply text-xs font-medium text-slate-400;
   }
   main {
-    @apply w-11/12 mx-auto h-full;
+    @apply w-11/12 mx-auto h-full mt-12;
   }
 }
 

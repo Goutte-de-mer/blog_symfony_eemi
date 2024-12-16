@@ -12,11 +12,18 @@ use Symfony\Component\Routing\Attribute\Route;
 class ArticleController extends AbstractController
 {
     #[Route('/articles', name: 'app_articles')]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response
     {
-        $articles = $articleRepository->findAllDesc();
+
+        $page = $request->query->getInt('page', 1);
+        $limit = 5;
+        $articles = $articleRepository->findAllDesc($page, $limit);
+        $maxPage = ceil($articles->count() / $limit);
+
         return $this->render('articles/articles.html.twig', [
             'articles' => $articles,
+            'maxPage' => $maxPage,
+            'page' => $page,
         ]);
     }
     #[Route('/article/{id}', name: 'app_article_show', requirements: ['id' => '\d+'])]
