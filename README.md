@@ -48,7 +48,7 @@ php bin/console doctrine:fixtures:load
 Démarrez le serveur de développement Symfony :
 
 ```bash
-symfony server:start
+symfony serve
 ```
 
 Votre application est maintenant accessible à l’adresse [http://127.0.0.1:8000](http://127.0.0.1:8000).
