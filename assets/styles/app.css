@@ -1,3 +1,36 @@
-body {
-    background-color: skyblue;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-black min-h-screen;
+  }
+  label {
+    @apply text-xs font-medium text-slate-400;
+  }
+  main {
+    @apply w-11/12 mx-auto h-full;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply py-2 px-5 font-semibold rounded-full hover:scale-90 transition-transform;
+  }
+  .btn-primary {
+    @apply bg-gradient-to-r from-dark_purple to-light_purple text-white;
+  }
+  .btn-secondary {
+    @apply border-dark_purple text-dark_purple border-2;
+  }
+  .input {
+    @apply border-b-[2px] border-b-slate-300 px-1 py-2 focus:border-b-dark_purple focus:shadow-none focus-visible:outline-none;
+  }
+  .label {
+    @apply transition-colors peer-focus:text-dark_purple;
+  }
+  .error {
+    @apply text-center text-xl p-3 font-bold;
+  }
 }

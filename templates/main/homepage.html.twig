@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Blog symfony EEMI
+{% endblock %}
+
+{% block body %}
+
+	<main class="flex flex-col">
+
+		<div>
+			<h1 class="font-bold text-3xl mb-7 text-dark_purple uppercase text-center">Nos derniers articles</h1>
+			<ul class="grid grid-cols-3 gap-7 mx-auto">
+				{% for article in articles %}
+					<li class="flex flex-col p-6 bg-white shadow-lg rounded-lg w-[400px]">
+						<h2 class="text-xl font-bold mb-5">{{ article.title }}</h2>
+						<p class="text-justify mb-5">{{ article.content|length > 130 ? article.content[:130] ~ '...' : article.content  }}</p>
+
+						<div class="mt-auto flex justify-between">
+							<a href="{{ path('app_article_show', {'id': article.id}) }}" class="text-dark_purple font-semibold">Lire plus ></a>
+							<small>Publié le :
+								{{article.createdAt|date('d/m/Y')}}</small>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+
+		<a class="mx-auto mt-5" href="{{ path('app_articles') }}">
+			<button class="btn btn-secondary">
+				Voir tous les articles
+			</button>
+		</a>
+	</main>
+
+{% endblock %}

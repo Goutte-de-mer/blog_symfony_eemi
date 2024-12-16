@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login
+{% endblock %}
+
+{% block body %}
+
+	<main>
+		{% if error %}
+			<div class="error">
+				<p>{{ error }}</p>
+			</div>
+		{% endif %}
+		<form class="flex flex-col content-center gap-y-12 p-7 rounded-2xl m-auto shadow-lg max-w-[800px]" action="{{path('app_login')}}" method="post">
+			<div class="flex gap-x-10 m-auto">
+				<div class="flex flex-col-reverse w-fit">
+					<input class="input peer" type="text" name="_identifier" id="identifier" required>
+					<label class="label" for="identifier">Email ou nom d'utilisateur</label>
+
+				</div>
+				<div class="flex flex-col-reverse w-fit">
+					<input class="input peer" type="password" name="_password" id="password" required>
+					<label class="label" for="password">Mot de passe</label>
+
+				</div>
+			</div>
+
+
+			<input type="hidden" name="_target_path" value="/">
+			<button class="btn btn-secondary w-fit m-auto" type="submit">Se connecter</button>
+
+		</form>
+
+	</main>
+
+
+{% endblock %}

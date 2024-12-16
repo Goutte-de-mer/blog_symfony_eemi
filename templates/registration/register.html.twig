@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<main>
+		<h1 class="font-bold text-xl text-center uppercase">inscription</h1>
+
+
+		{{ form_start(registrationForm, {'attr': {'class': 'flex flex-wrap gap-x-10 justify-between content-center gap-y-12 p-7 rounded-2xl m-auto shadow-lg max-w-[800px]'}}) }}
+
+		<div class="flex flex-col-reverse w-[45%]">
+			{{ form_widget(registrationForm.email, {'attr': {'class': 'input peer'}}) }}
+			{{ form_label(registrationForm.email, null, {'label_attr': {'class': 'label'}}) }}
+			{{ form_errors(registrationForm.email) }}
+		</div>
+		<div class="flex flex-col-reverse w-[45%]">
+			{{ form_widget(registrationForm.username, {'attr': {'class': 'input peer'}}) }}
+			{{ form_label(registrationForm.username, null, {'label_attr': {'class': 'label'}}) }}
+			{{ form_errors(registrationForm.username) }}
+		</div>
+		<div class="flex flex-col-reverse w-full">
+			{{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'input peer'}}) }}
+			{{ form_label(registrationForm.plainPassword, null, {'label_attr': {'class': 'label'}}) }}
+			{{ form_errors(registrationForm.plainPassword) }}
+		</div>
+
+		<button type="submit" class="btn btn-secondary">S'inscrire</button>
+		{{ form_end(registrationForm) }}
+	</main>
+{% endblock %}
