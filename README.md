@@ -1,4 +1,4 @@
-# Lancer la Web App Blog
+# Lancer le Blog
 
 ## Prérequis
 
